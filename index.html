@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة مستر أحمد محمود - الصف الثاني الثانوي</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ========== صفحة تسجيل الدخول ========== -->
+    <div id="loginPage" class="page active">
+        <div class="login-container">
+            <div class="login-header">
+                <!-- صورة مستر أحمد محمود مدمجة -->
+                <img src="https://lens.usercontent.google.com/banana?agsi=CmdnbG9iYWw6OjAwMDA1NWNmZWM3MDAyNmQ6MDAwMDAwZWI6MTozNWY3OWRhNTVjMWI5ZTdkOjAwMDA1NWNmZWM3MDAyNmQ6MDAwMDAzMjNhZGYwMzM2ODowMDA2NjAxMDdkYzEzNWVmEAIYASIKaW1hZ2UvanBlZw==" alt="مستر أحمد محمود" class="teacher-img" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='block';">
+                <div id="logoFallback" class="logo-circle" style="display:none;">📚</div>
+                
+                <h1>منصة مستر أحمد محمود</h1>
+                <p>الصف الثاني الثانوي</p>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-role="student">👨‍🎓 طالب</button>
+                <button class="tab-btn" data-role="teacher">👨‍🏫 معلم</button>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="loginName">الاسم</label>
+                    <input type="text" id="loginName" placeholder="أدخل اسمك" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">كلمة المرور</label>
+                    <input type="password" id="loginPassword" placeholder="أدخل كلمة المرور" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">تسجيل الدخول</button>
+                <!-- الملاحظة اتشالت من هنا -->
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== لوحة التحكم ========== -->
+    <div id="dashboardPage" class="page">
+        <!-- الشريط العلوي -->
+        <header class="navbar">
+            <div class="nav-brand">
+                <span class="brand-icon">📚</span>
+                <div>
+                    <h2>منصة مستر أحمد محمود</h2>
+                    <small>الصف الثاني الثانوي</small>
+                </div>
+            </div>
+            <div class="nav-user">
+                <span id="userBadge" class="user-badge">👨‍🎓 طالب</span>
+                <span id="userName" class="user-name">اسم المستخدم</span>
+                <button id="logoutBtn" class="btn btn-logout">خروج</button>
+            </div>
+        </header>
+
+        <!-- المحتوى -->
+        <main class="main-content">
+
+            <!-- لوحة المعلم -->
+            <div id="teacherPanel" class="panel hidden">
+                <h2 class="section-title">👨‍🏫 لوحة تحكم المعلم</h2>
+
+                <div class="grid-2">
+                    <!-- رفع ملف -->
+                    <div class="card">
+                        <h3>📤 رفع ملف جديد</h3>
+                        <form id="uploadForm">
+                            <div class="form-group">
+                                <label>عنوان الملف</label>
+                                <input type="text" id="fileTitle" placeholder="مثال: ملزمة الفصل الأول" required>
+                            </div>
+                            <div class="form-group">
+                                <label>الوصف</label>
+                                <input type="text" id="fileDesc" placeholder="وصف مختصر" required>
+                            </div>
+                            <div class="form-group">
+                                <label>اختر الملف (PDF / صورة / فيديو)</label>
+                                <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.png,.mp4" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">رفع الملف</button>
+                        </form>
+                    </div>
+
+                    <!-- إضافة اختبار -->
+                    <div class="card">
+                        <h3>📝 إضافة اختبار جديد</h3>
+                        <form id="examForm">
+                            <div class="form-group">
+                                <label>عنوان الاختبار</label>
+                                <input type="text" id="examTitle" placeholder="مثال: اختبار الوحدة الأولى" required>
+                            </div>
+                            <div class="form-group">
+                                <label>رابط الاختبار (Google Forms / Drive / إلخ)</label>
+                                <input type="url" id="examLink" placeholder="https://..." required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">إضافة الاختبار</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- قوائم المحتوى -->
+                <div class="grid-2 mt-2">
+                    <div class="card">
+                        <h3>📁 الملفات المرفوعة</h3>
+                        <div id="filesList" class="items-list"></div>
+                    </div>
+                    <div class="card">
+                        <h3>📝 الاختبارات</h3>
+                        <div id="examsList" class="items-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- لوحة الطالب -->
+            <div id="studentPanel" class="panel hidden">
+                <h2 class="section-title">👨‍🎓 محتوى الطالب</h2>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>📁 الملفات المتاحة</h3>
+                        <div id="studentFilesList" class="items-list"></div>
+                    </div>
+                    <div class="card">
+                        <h3>📝 الاختبارات المتاحة</h3>
+                        <div id="studentExamsList" class="items-list"></div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- رسائل التنبيه -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
